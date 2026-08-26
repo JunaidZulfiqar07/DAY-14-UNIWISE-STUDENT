@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNIWISE — Academic Assistant | UET Taxila</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep:#071B33;
+    --navy:#0B2A4A;
+    --navy-soft:#123761;
+    --gold:#C89B3C;
+    --gold-light:#E4C578;
+    --paper:#F7F4EC;
+    --paper-2:#EFEADD;
+    --ink:#1A1F2B;
+    --ink-soft:#5B6472;
+    --line:#DCD4BE;
+    --urgent:#A6382C;
+    --high:#C07A20;
+    --medium:#1F6E4A;
+    --low:#2E6E86;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  ::selection{background:var(--gold-light);color:var(--navy-deep);}
+
+  :focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+
+  /* ===== Utility bar ===== */
+  .utility-bar{
+    background:var(--navy-deep);
+    color:#B9C4D4;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:.04em;
+  }
+  .utility-bar .inner{
+    max-width:1180px;margin:0 auto;padding:6px 24px;
+    display:flex;justify-content:space-between;align-items:center;
+    flex-wrap:wrap;gap:6px;
+  }
+  .utility-bar a{text-decoration:none;opacity:.85;}
+  .utility-bar a:hover{opacity:1;color:var(--gold-light);}
+  .utility-links{display:flex;gap:18px;}
+
+  /* ===== Header ===== */
+  header.main{
+    background:var(--navy);
+    border-bottom:3px solid var(--gold);
+  }
+  .header-inner{
+    max-width:1180px;margin:0 auto;padding:18px 24px;
+    display:flex;align-items:center;gap:16px;
+    justify-content:space-between;
+    flex-wrap:wrap;
+  }
+  .brand{display:flex;align-items:center;gap:14px;}
+  .uet-logo{height:48px;width:auto;flex-shrink:0;}
+  .crest{
+    width:52px;height:52px;border-radius:50%;
+    border:2px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Playfair Display',serif;
+    font-weight:800;font-size:16px;color:var(--gold-light);
+    background:radial-gradient(circle at 35% 30%, var(--navy-soft), var(--navy-deep));
+    flex-shrink:0;
+  }
+  .brand-text .name{
+    font-family:'Playfair Display',serif;
+    font-weight:700;font-size:24px;color:#fff;letter-spacing:.01em;line-height:1.1;
+  }
+  .brand-text .sub{
+    font-size:12px;color:var(--gold-light);letter-spacing:.08em;text-transform:uppercase;margin-top:2px;
+  }
+  .header-tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;color:#B9C4D4;text-align:right;
+    letter-spacing:.03em;line-height:1.6;
+  }
+
+  /* ===== Hero ===== */
+  .hero{
+    background:linear-gradient(180deg,var(--navy) 0%, var(--navy) 55%, var(--paper) 55%);
+    padding:56px 24px 0;
+  }
+  .hero-inner{
+    max-width:1180px;margin:0 auto;
+    display:grid;grid-template-columns:1.05fr .95fr;gap:40px;
+    align-items:start;
+  }
+  .hero-copy{color:#fff;padding-bottom:60px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--gold-light);
+    display:flex;align-items:center;gap:10px;margin-bottom:18px;
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--gold);display:inline-block;}
+  .hero-copy h1{
+    font-family:'Playfair Display',serif;
+    font-weight:800;font-size:44px;line-height:1.12;margin:0 0 18px;
+  }
+  .hero-copy h1 em{color:var(--gold-light);font-style:normal;}
+  .hero-copy p{
+    font-size:16px;line-height:1.65;color:#CBD5E3;max-width:46ch;margin:0 0 26px;
+  }
+  .hero-stats{
+    display:flex;gap:0;border-top:1px solid rgba(255,255,255,.15);
+    max-width:480px;
+  }
+  .hero-stats div{
+    flex:1;padding:16px 18px 0;border-right:1px solid rgba(255,255,255,.15);
+  }
+  .hero-stats div:last-child{border-right:none;}
+  .hero-stats .num{font-family:'Playfair Display',serif;font-size:26px;color:var(--gold-light);font-weight:700;}
+  .hero-stats .lbl{font-size:11px;color:#9FB0C3;text-transform:uppercase;letter-spacing:.06em;margin-top:4px;}
+
+  /* ===== Form card ===== */
+  .form-card{
+    background:#fff;
+    border:1px solid var(--line);
+    box-shadow:0 24px 48px -18px rgba(7,27,51,.35);
+    padding:30px 28px 28px;
+    margin-bottom:40px;
+    position:relative;
+  }
+  .form-card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:4px;
+    background:repeating-linear-gradient(90deg,var(--gold) 0 14px, transparent 14px 20px);
+  }
+  .form-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:20px;
+  }
+  .form-head h2{
+    font-family:'Playfair Display',serif;font-size:19px;margin:0;color:var(--navy);
+  }
+  .form-head span{
+    font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-soft);
+    text-transform:uppercase;letter-spacing:.06em;
+  }
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .field{margin-bottom:16px;}
+  .field label{
+    display:block;font-size:11px;font-weight:600;letter-spacing:.05em;
+    text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px;
+  }
+  .field input,.field select,.field textarea{
+    width:100%;padding:10px 12px;font-family:'Inter',sans-serif;font-size:14px;
+    border:1px solid #C9C2AE;background:var(--paper);color:var(--ink);
+    border-radius:var(--radius);
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{
+    outline:none;border-color:var(--navy);background:#fff;
+  }
+  .field textarea{resize:vertical;min-height:64px;font-family:'Inter',sans-serif;}
+  .priority-toggle{display:flex;gap:8px;}
+  .priority-toggle button{
+    flex:1;padding:9px 6px;font-size:12px;font-weight:600;letter-spacing:.02em;
+    border:1px solid #C9C2AE;background:var(--paper);color:var(--ink-soft);cursor:pointer;
+    font-family:'Inter',sans-serif;
+  }
+  .priority-toggle button.active{
+    background:var(--navy);border-color:var(--navy);color:#fff;
+  }
+  .submit-btn{
+    width:100%;padding:14px;margin-top:6px;
+    background:var(--navy);color:#fff;border:none;cursor:pointer;
+    font-family:'Inter',sans-serif;font-weight:600;font-size:14px;letter-spacing:.03em;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    transition:background .15s ease;
+  }
+  .submit-btn:hover{background:var(--navy-soft);}
+  .submit-btn:disabled{background:#9AA5B1;cursor:progress;}
+  .submit-btn .spinner{
+    width:14px;height:14px;border:2px solid rgba(255,255,255,.4);
+    border-top-color:#fff;border-radius:50%;
+    animation:spin .7s linear infinite;display:none;
+  }
+  .submit-btn.loading .spinner{display:inline-block;}
+  .submit-btn.loading .btn-label{opacity:.85;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  /* ===== Result / Advisory Slip ===== */
+  .result-wrap{max-width:1180px;margin:0 auto 70px;padding:0 24px;}
+  .result-label{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .result-label::after{content:"";flex:1;height:1px;background:var(--line);}
+
+  .advisory{
+    background:#fff;
+    border:1px solid var(--line);
+    position:relative;
+    padding:34px 34px 30px;
+    display:none;
+  }
+  .advisory.show{display:block;animation:reveal .5s ease;}
+  @keyframes reveal{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .advisory::before,.advisory::after{
+    content:"";position:absolute;left:0;right:0;height:6px;
+    background-image:radial-gradient(circle,var(--paper) 4px, transparent 4.5px);
+    background-size:16px 16px;background-position:0 center;
+  }
+  .advisory::before{top:-3px;}
+  .advisory::after{bottom:-3px;}
+
+  .empty-state{
+    background:#fff;border:1px dashed var(--line);padding:40px 30px;text-align:center;
+  }
+  .empty-state p{color:var(--ink-soft);font-size:14px;max-width:44ch;margin:10px auto 0;line-height:1.6;}
+  .empty-state .glyph{
+    width:44px;height:44px;margin:0 auto;border:1px solid var(--line);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:'Playfair Display',serif;font-size:20px;
+  }
+
+  .advisory-top{
+    display:flex;justify-content:space-between;align-items:flex-start;gap:20px;
+    border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:20px;flex-wrap:wrap;
+  }
+  .advisory-top h3{
+    font-family:'Playfair Display',serif;font-size:20px;margin:0 0 4px;color:var(--navy);
+  }
+  .advisory-top .meta{font-size:12px;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;}
+
+  .seal{
+    width:88px;height:88px;border-radius:50%;flex-shrink:0;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    border:3px double currentColor;color:var(--urgent);
+    font-family:'Playfair Display',serif;
+    transform:rotate(-6deg);
+  }
+  .seal .p-label{font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-family:'IBM Plex Mono',monospace;font-weight:600;}
+  .seal .p-word{font-size:15px;font-weight:800;margin-top:2px;}
+  .seal.urgent{color:var(--urgent);}
+  .seal.high{color:var(--high);}
+  .seal.medium{color:var(--medium);}
+  .seal.low{color:var(--low);}
+
+  .advisory-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+  .advisory-block h4{
+    font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-soft);
+    margin:0 0 8px;font-weight:700;
+  }
+  .advisory-block p{font-size:14px;line-height:1.6;margin:0;color:var(--ink);}
+  .advisory-block ol{margin:0;padding-left:18px;font-size:14px;line-height:1.7;color:var(--ink);}
+  .advisory-block.full{grid-column:1 / -1;}
+
+  .raw-toggle{
+    margin-top:22px;padding-top:14px;border-top:1px dashed var(--line);
+  }
+  .raw-toggle summary{
+    cursor:pointer;font-size:11px;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;
+    text-transform:uppercase;letter-spacing:.05em;
+  }
+  .raw-toggle pre{
+    margin-top:10px;background:var(--paper);padding:14px;font-size:12px;
+    overflow-x:auto;border:1px solid var(--line);color:var(--ink-soft);
+  }
+
+  .error-box{
+    background:#fff;border:1px solid var(--urgent);border-left:5px solid var(--urgent);
+    padding:18px 20px;display:none;
+  }
+  .error-box.show{display:block;}
+  .error-box h4{margin:0 0 6px;color:var(--urgent);font-size:14px;}
+  .error-box p{margin:0;font-size:13px;color:var(--ink-soft);line-height:1.5;}
+
+  /* ===== Footer ===== */
+  footer{
+    background:var(--navy-deep);color:#8B98AB;padding:30px 24px;
+    font-size:12px;
+  }
+  .footer-inner{
+    max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;
+    flex-wrap:wrap;gap:10px;align-items:center;
+  }
+  .footer-inner .gold{color:var(--gold-light);}
+
+  @media (max-width:880px){
+    .hero-inner{grid-template-columns:1fr;}
+    .hero{padding-top:40px;}
+    .hero-copy{padding-bottom:30px;}
+    .hero-copy h1{font-size:32px;}
+    .field-row{grid-template-columns:1fr;}
+    .advisory-grid{grid-template-columns:1fr;}
+    .hero{background:linear-gradient(180deg,var(--navy) 0%, var(--navy) 62%, var(--paper) 62%);}
+  }
+</style>
+</head>
+<body>
+
+<div class="utility-bar">
+  <div class="inner">
+    <span>UNIVERSITY OF ENGINEERING &amp; TECHNOLOGY, TAXILA</span>
+    <div class="utility-links">
+      <a href="https://www.uettaxila.edu.pk/" target="_blank" rel="noopener">Main Site</a>
+      <a href="http://amsys.uettaxila.edu.pk/" target="_blank" rel="noopener">AMSYS</a>
+      <a href="https://fiori.maktab.pern.edu.pk:8000/sap/bc/ui5_ui5/ui2/ushell/shells/abap/FioriLaunchpad.html" target="_blank" rel="noopener">SAP</a>
+    </div>
+  </div>
+</div>
+
+<header class="main">
+  <div class="header-inner">
+    <div class="brand">
+      <img src="https://www.uettaxila.edu.pk/images/Logos/uettaxila_logo.png" alt="UET Taxila Logo" class="uet-logo">
+      <div class="crest">UW</div>
+      <div class="brand-text">
+        <div class="name">UNIWISE</div>
+        <div class="sub">Academic Task Assistant</div>
+      </div>
+    </div>
+    <div class="header-tag">Developed By<br>Computer Engineering Department</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="eyebrow">Student Advisory Desk</div>
+      <h1>Log the task.<br><em>Let UNIWISE</em> set the priority.</h1>
+      <p>Submit an assignment, quiz, or project deadline and UNIWISE — UET Taxila's academic assistant — reads the urgency, checks it against your notes, and returns a short study plan. Every submission is logged for your semester record.</p>
+      <div class="hero-stats">
+        <div>
+          <div class="num">01</div>
+          <div class="lbl">Log the task</div>
+        </div>
+        <div>
+          <div class="num">02</div>
+          <div class="lbl">System reads urgency</div>
+        </div>
+        <div>
+          <div class="num">03</div>
+          <div class="lbl">Get your plan</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="form-head">
+        <h2>New Task Entry</h2>
+        <span>Form UW‑14</span>
+      </div>
+      <form id="uniwiseForm">
+        <div class="field-row">
+          <div class="field">
+            <label for="studentName">Student Name</label>
+            <input type="text" id="studentName" required placeholder="e.g. Junaid Zulfiqar">
+          </div>
+          <div class="field">
+            <label for="university">University</label>
+            <input type="text" id="university" required value="UET Taxila">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="semester">Semester</label>
+            <input type="text" id="semester" required placeholder="e.g. 1st Semester">
+          </div>
+          <div class="field">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" required placeholder="e.g. Applied Physics">
+          </div>
+        </div>
+        <div class="field">
+          <label for="task">Task</label>
+          <input type="text" id="task" required placeholder="e.g. Lab report on oscillation experiment">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="deadline">Deadline</label>
+            <input type="date" id="deadline" required>
+          </div>
+          <div class="field">
+            <label>Your Priority</label>
+            <div class="priority-toggle" id="priorityToggle">
+              <button type="button" data-val="Low">Low</button>
+              <button type="button" data-val="Medium" class="active">Medium</button>
+              <button type="button" data-val="High">High</button>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="notes">Notes</label>
+          <textarea id="notes" placeholder="Anything UNIWISE should know — exam overlap, group work, weightage, etc."></textarea>
+        </div>
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <span class="spinner"></span>
+          <span class="btn-label">Submit to UNIWISE</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<div class="result-wrap">
+  <div class="result-label">Advisory Output</div>
+
+  <div class="empty-state" id="emptyState">
+    <div class="glyph">✎</div>
+    <p>Fill in the form above and submit. UNIWISE will return a priority reading, its reasoning, and a short study plan here.</p>
+  </div>
+
+  <div class="error-box" id="errorBox">
+    <h4>UNIWISE could not process this submission</h4>
+    <p id="errorMsg">The webhook did not respond as expected. Check that the n8n workflow is active, then try again.</p>
+  </div>
+
+  <div class="advisory" id="advisory">
+    <div class="advisory-top">
+      <div>
+        <h3 id="advTask">Task advisory</h3>
+        <div class="meta" id="advMeta">—</div>
+      </div>
+      <div class="seal medium" id="advSeal">
+        <div class="p-label">Priority</div>
+        <div class="p-word" id="advPriorityWord">—</div>
+      </div>
+    </div>
+    <div class="advisory-grid">
+      <div class="advisory-block">
+        <h4>Reasoning</h4>
+        <p id="advReason">—</p>
+      </div>
+      <div class="advisory-block">
+        <h4>Recommendation</h4>
+        <p id="advRecommendation">—</p>
+      </div>
+      <div class="advisory-block full">
+        <h4>Study Plan</h4>
+        <ol id="advPlan"></ol>
+      </div>
+    </div>
+    <details class="raw-toggle">
+      <summary>View raw response</summary>
+      <pre id="advRaw"></pre>
+    </details>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>UNIWISE — developed by <span class="gold">Computer Engineering Department</span></div>
+    <div>© 2026 All Rights Reserved</div>
+  </div>
+</footer>
+
+<script>
+  const WEBHOOK_URL = "https://junaidzulfiqarrr.app.n8n.cloud/webhook/uniwise-student";
+
+  const form = document.getElementById('uniwiseForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const priorityToggle = document.getElementById('priorityToggle');
+  let selectedPriority = 'Medium';
+
+  priorityToggle.addEventListener('click', (e) => {
+    const btn = e.target.closest('button');
+    if(!btn) return;
+    [...priorityToggle.children].forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedPriority = btn.dataset.val;
+  });
+
+  const emptyState = document.getElementById('emptyState');
+  const errorBox = document.getElementById('errorBox');
+  const errorMsg = document.getElementById('errorMsg');
+  const advisory = document.getElementById('advisory');
+
+  function pick(obj, keys){
+    for(const k of keys){
+      for(const objKey of Object.keys(obj)){
+        if(objKey.toLowerCase().replace(/[^a-z]/g,'') === k.toLowerCase().replace(/[^a-z]/g,'')){
+          if(obj[objKey] !== undefined && obj[objKey] !== null && obj[objKey] !== '') return obj[objKey];
+        }
+      }
+    }
+    return null;
+  }
+
+  function priorityClass(p){
+    if(!p) return 'medium';
+    const v = p.toString().toLowerCase();
+    if(v.includes('urgent')) return 'urgent';
+    if(v.includes('high')) return 'high';
+    if(v.includes('low')) return 'low';
+    return 'medium';
+  }
+
+  function renderResult(payload, formData){
+    let data = payload;
+    if(Array.isArray(data)) data = data[0] || {};
+    if(data && typeof data === 'object' && data.data && typeof data.data === 'object') data = { ...data, ...data.data };
+
+    // The AI Agent's raw text output sometimes lands in an "output" field as a JSON string.
+    let parsedAgentOutput = null;
+    const rawOutput = data ? pick(data, ['output', 'text']) : null;
+    if(rawOutput && typeof rawOutput === 'string'){
+      try{
+        const cleaned = rawOutput.replace(/```json|```/g,'').trim();
+        parsedAgentOutput = JSON.parse(cleaned);
+      }catch(e){ /* not JSON, ignore */ }
+    }
+    const merged = { ...(data||{}), ...(parsedAgentOutput||{}) };
+
+    const priority = pick(merged, ['ai_priority','aipriority','priority']) || formData.priority;
+    const reason = pick(merged, ['reason']) || 'UNIWISE did not return a reasoning field for this submission.';
+    const recommendation = pick(merged, ['recommendation']) || 'No specific recommendation was returned — check the raw response below.';
+    let plan = pick(merged, ['study_plan','studyplan']);
+
+    document.getElementById('advTask').textContent = formData.task || 'Task advisory';
+    document.getElementById('advMeta').textContent =
+      `${formData.subject || ''} · ${formData.semester || ''} · Due ${formData.deadline || '—'}`;
+    document.getElementById('advPriorityWord').textContent = (priority || 'MEDIUM').toString().toUpperCase();
+    const seal = document.getElementById('advSeal');
+    seal.className = 'seal ' + priorityClass(priority);
+    document.getElementById('advReason').textContent = reason;
+    document.getElementById('advRecommendation').textContent = recommendation;
+
+    const planList = document.getElementById('advPlan');
+    planList.innerHTML = '';
+    if(Array.isArray(plan) && plan.length){
+      plan.forEach(step => {
+        const li = document.createElement('li');
+        li.textContent = step;
+        planList.appendChild(li);
+      });
+    } else if(typeof plan === 'string' && plan.trim()){
+      plan.split(/\n|(?<=\.)\s+(?=\d)/).filter(Boolean).forEach(step=>{
+        const li = document.createElement('li');
+        li.textContent = step.trim();
+        planList.appendChild(li);
+      });
+    } else {
+      const li = document.createElement('li');
+      li.textContent = 'No study plan was returned in this response.';
+      planList.appendChild(li);
+    }
+
+    document.getElementById('advRaw').textContent = JSON.stringify(payload, null, 2);
+
+    emptyState.style.display = 'none';
+    errorBox.classList.remove('show');
+    advisory.classList.add('show');
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = {
+      studentName: document.getElementById('studentName').value.trim(),
+      university: document.getElementById('university').value.trim(),
+      semester: document.getElementById('semester').value.trim(),
+      subject: document.getElementById('subject').value.trim(),
+      task: document.getElementById('task').value.trim(),
+      deadline: document.getElementById('deadline').value,
+      priority: selectedPriority,
+      notes: document.getElementById('notes').value.trim()
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.classList.add('loading');
+    submitBtn.querySelector('.btn-label').textContent = 'Sending to UNIWISE…';
+    errorBox.classList.remove('show');
+
+    try{
+      const res = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      if(!res.ok){
+        throw new Error('Webhook responded with status ' + res.status);
+      }
+
+      let payload;
+      const raw = await res.text();
+      try{
+        payload = raw ? JSON.parse(raw) : {};
+      }catch(e){
+        payload = { output: raw };
+      }
+
+      renderResult(payload, formData);
+
+    }catch(err){
+      emptyState.style.display = 'none';
+      advisory.classList.remove('show');
+      errorMsg.textContent = err.message + ' — make sure the n8n workflow is Active and CORS is allowed on the webhook.';
+      errorBox.classList.add('show');
+    }finally{
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('loading');
+      submitBtn.querySelector('.btn-label').textContent = 'Submit to UNIWISE';
+    }
+  });
+</script>
+
+</body>
+</html>
