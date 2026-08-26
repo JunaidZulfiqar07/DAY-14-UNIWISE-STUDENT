@@ -11,6 +11,9 @@ The project combines a modern web frontend with an **n8n automation workflow** a
 **Live Website:**
 https://junaidzulfiqar07.github.io/uniwise-student/
 
+⚠️ Live Demo Note:
+If the live demo shows a webhook error or the AI response is temporarily unavailable, please let me know. The project depends on an active n8n workflow and webhook connection.
+
 ## 💡 Problem
 
 University students often have multiple assignments, quizzes, exams, projects, and deadlines at the same time. It can become difficult to determine what should be handled first and how to manage academic workload effectively.
