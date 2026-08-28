@@ -6,13 +6,7 @@ UniWise Student is an AI-powered university assistant designed to help students 
 
 The project combines a modern web frontend with an **n8n automation workflow** and AI processing to create a practical university-focused automation system.
 
-## 🚀 Live Demo
 
-**Live Website:**
-https://junaidzulfiqar07.github.io/uniwise-student/
-
-⚠️ Live Demo Note:
-If the live demo shows a webhook error or the AI response is temporarily unavailable, please let me know. The project depends on an active n8n workflow and webhook connection.
 
 ## 💡 Problem
 
