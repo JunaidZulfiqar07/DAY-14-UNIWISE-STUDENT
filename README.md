@@ -1,6 +1,6 @@
 # 🎓 UniWise Student — AI-Powered University Student Assistant
 
-**Day 14 of the 30 Days AI Automation Challenge**
+**Day 14 of the 15 Days AI Automation Challenge**
 
 UniWise Student is an AI-powered university assistant designed to help students organize academic tasks, identify priorities, and receive personalized advisory guidance.
 
@@ -113,7 +113,7 @@ The frontend is deployed using **GitHub Pages**, making the UniWise Student Assi
 
 ## 🔐 Note
 
-This project is an educational prototype created as part of the **30 Days AI Automation Challenge**.
+This project is an educational prototype created as part of the **15 Days AI Automation Challenge**.
 
 It demonstrates how a web application can communicate with an automation workflow through webhooks and use AI to generate useful student-focused responses.
 
